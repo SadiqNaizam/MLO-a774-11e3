@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -18,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,12 +65,26 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+        // PRD specific color names for direct use as Tailwind classes
+        'primary-text': '#333333',       // PRD colorPalette.primaryText
+        'secondary-text': '#737373',     // PRD colorPalette.secondaryText
+        'accent-blue': '#3B82F6',        // PRD colorPalette.accentBlue
+        'accent-red': '#EF4444',         // PRD colorPalette.accentRed
+        'accent-orange': '#F59E0B',      // PRD colorPalette.accentOrange
+        'accent-purple': '#8B5CF6',      // PRD colorPalette.accentPurple
+        'accent-teal': '#2DD4BF',        // PRD colorPalette.accentTeal
+        // Direct references to PRD structural colors, if needed alongside semantic ones
+        'prd-background': '#F3F4F6',    // PRD colorPalette.background
+        'prd-surface': '#FFFFFF',       // PRD colorPalette.surface
+        'prd-sidebar': '#E5E7EB',       // PRD colorPalette.sidebar (same as sidebar.DEFAULT via CSS var)
+        'prd-border': '#E5E7EB'         // PRD colorPalette.border (same as border via CSS var)
 			},
 			borderRadius: {
+        // Values will use the updated --radius (0.375rem)
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				md: 'calc(var(--radius) - 2px)', // Effectively 0.375rem - 2px (approx 0.25rem or 4px)
+				sm: 'calc(var(--radius) - 4px)'  // Effectively 0.375rem - 4px (approx 0.125rem or 2px)
 			},
 			keyframes: {
 				'accordion-down': {
